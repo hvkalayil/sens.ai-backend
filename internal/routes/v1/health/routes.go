@@ -2,6 +2,7 @@ package health
 
 import (
 	"github.com/gofiber/fiber/v2"
+
 	"sens.ai-backend/internal/controllers"
 )
 

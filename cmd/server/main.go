@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/swagger"
 	"github.com/joho/godotenv"
+
 	_ "sens.ai-backend/docs"
 	"sens.ai-backend/internal/logger"
 	"sens.ai-backend/internal/middleware"
