@@ -108,9 +108,9 @@ make build
 make test
 ```
 
-### Lint
+### Pre Commit Checks
 ```bash
-make lint
+make check
 ```
 
 ## Pre-commit Hooks
@@ -119,7 +119,6 @@ This project uses pre-commit hooks to ensure code quality. The following checks 
 
 - **trailing-whitespace**: Removes trailing whitespace
 - **end-of-file-fixer**: Ensures files end with a newline
-- **check-yaml**: Validates YAML files
 - **check-added-large-files**: Prevents committing large files
 - **go fmt**: Formats Go code
 - **go vet**: Examines Go source code and reports suspicious constructs
@@ -153,6 +152,8 @@ pre-commit run golangci-lint --all-files
 ## Project Structure
 
 - `cmd/server`: Application entry point.
+- `internal/worker`: Worker entry point.
+- `internal/api`: API entry point.
 - `internal/controllers`: Request handlers.
 - `internal/routes`: Route definitions.
 - `internal/routes/v1`: Version 1 API routes.

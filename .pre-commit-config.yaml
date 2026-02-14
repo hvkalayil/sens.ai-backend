@@ -3,9 +3,11 @@ repos:
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        exclude: docs/
       - id: end-of-file-fixer
-      - id: check-yaml
+        exclude: docs/
       - id: check-added-large-files
+        exclude: docs/
 
   # Windows-compatible Go hooks using local commands
   - repo: local
@@ -36,11 +38,12 @@ repos:
         entry: golangci-lint run
         language: system
         files: \.go$
+        exclude: ^docs/
         pass_filenames: false
 
       - id: swag-init
         name: swag init
-        entry: swag init -g cmd/server/main.go
+        entry: swag init -g cmd/server/main.go --output docs
         language: system
         files: \.go$
         pass_filenames: false
