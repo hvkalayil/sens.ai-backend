@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"github.com/gofiber/fiber/v2"
+
+	"sens.ai-backend/internal/db"
 )
 
 // HealthCheck handles the health check request
@@ -13,8 +15,15 @@ import (
 // @Success 200 {object} map[string]string
 // @Router /v1/health [get]
 func HealthCheck(c *fiber.Ctx) error {
+	dbStatus := "down"
+	if db.Pool != nil {
+		if err := db.Pool.Ping(c.Context()); err == nil {
+			dbStatus = "up"
+		}
+	}
+
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"status":  "success",
-		"message": "Service is healthy",
+		"message":  "Service is healthy",
+		"database": dbStatus,
 	})
 }

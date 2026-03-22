@@ -1,12 +1,14 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
 
 	"sens.ai-backend/internal/api"
+	"sens.ai-backend/internal/db"
 	"sens.ai-backend/internal/logger"
 	"sens.ai-backend/internal/worker"
 )
@@ -29,6 +31,13 @@ func main() {
 
 	// Initialize logger
 	logger.Init()
+
+	// Initialize DB
+	ctx := context.Background()
+	if err := db.Init(ctx); err != nil {
+		logger.Logger.Fatal().Err(err).Msg("Failed to connect to database")
+	}
+	defer db.Close()
 
 	// Start Worker
 	go func() {
